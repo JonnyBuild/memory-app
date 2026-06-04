@@ -1,0 +1,268 @@
+import type { MemoryPhoto, PackingPlan, Silhouette, StyleMemoryState, WardrobeItem } from '../types';
+
+const photoDataUri = (title: string, accent: string, sky: string, ground: string) => {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="${sky}"/>
+          <stop offset="0.55" stop-color="#f8f4ee"/>
+          <stop offset="1" stop-color="${accent}"/>
+        </linearGradient>
+        <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
+      </defs>
+      <rect width="900" height="1200" fill="url(#sky)"/>
+      <rect y="780" width="900" height="420" fill="${ground}"/>
+      <circle cx="145" cy="170" r="82" fill="${accent}" opacity="0.32" filter="url(#soft)"/>
+      <rect x="120" y="330" width="660" height="16" rx="8" fill="#ffffff" opacity="0.35"/>
+      <rect x="180" y="408" width="540" height="16" rx="8" fill="#ffffff" opacity="0.24"/>
+      <path d="M390 452c35-30 87-30 121 0l35 315-55 2-22-190-20 190-58-1 26-192-38 69-46-24 57-169Z" fill="#262323"/>
+      <path d="M363 500l-74 246 56 12 58-168Z" fill="#f2e7d7"/>
+      <path d="M511 498l76 252-58 13-56-174Z" fill="#f2e7d7"/>
+      <path d="M346 797c57 30 145 33 213 5" stroke="#ffffff" stroke-width="18" opacity="0.45" fill="none" stroke-linecap="round"/>
+      <text x="64" y="1106" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#262323" opacity="0.72">${title}</text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+};
+
+export const peopleSeed = ['Marie', 'Jonas', 'Lea', 'Pierre', 'Akira'];
+export const placesSeed = ['Winterthur', 'Geneve', 'Paris', 'Lyon', 'Barcelone'];
+
+export const wardrobeSeed: WardrobeItem[] = [
+  {
+    id: 'jean-brut',
+    name: 'Jean brut',
+    category: 'bas',
+    material: 'coton bio',
+    origin: 'Portugal',
+    maker: 'Atelier responsable',
+    tags: ['#cotonbio', '#durable', '#base'],
+    ecoScore: 82,
+    source: 'claire',
+    color: '#1f2933',
+  },
+  {
+    id: 'pantalon-lin-beige',
+    name: 'Pantalon lin beige',
+    category: 'bas',
+    material: 'lin francais',
+    origin: 'Atelier local',
+    maker: 'Claire Germain',
+    tags: ['#lin', '#local', '#leger'],
+    ecoScore: 91,
+    source: 'claire',
+    color: '#eadfce',
+  },
+  {
+    id: 'pull-merinos-gris',
+    name: 'Pull merinos gris clair',
+    category: 'haut',
+    material: 'laine merinos',
+    origin: 'Italie',
+    maker: 'Maille lente',
+    tags: ['#merinos', '#hiver', '#reparable'],
+    ecoScore: 76,
+    source: 'claire',
+    color: '#cfd2ce',
+  },
+  {
+    id: 'chemise-lin-blanche',
+    name: 'Chemise blanche en lin',
+    category: 'haut',
+    material: 'lin belge',
+    origin: 'Belgique',
+    maker: 'Atelier Claire Germain',
+    tags: ['#lin', '#respirant', '#base'],
+    ecoScore: 89,
+    source: 'claire',
+    color: '#fffaf0',
+  },
+  {
+    id: 'robe-midi-terracotta',
+    name: 'Robe midi terracotta',
+    category: 'robe',
+    material: 'viscose LENZING',
+    origin: 'Europe',
+    maker: 'Claire Germain',
+    tags: ['#lensing', '#ete', '#fluide'],
+    ecoScore: 78,
+    source: 'claire',
+    color: '#a9553f',
+  },
+  {
+    id: 'blazer-camel',
+    name: 'Blazer camel',
+    category: 'veste',
+    material: 'laine recyclee',
+    origin: 'France',
+    maker: 'Studio local',
+    tags: ['#recycle', '#structure', '#demisaison'],
+    ecoScore: 85,
+    source: 'claire',
+    color: '#bd895d',
+  },
+  {
+    id: 'foulard-soie-ivoire',
+    name: 'Foulard soie ivoire',
+    category: 'accessoire',
+    material: 'soie',
+    origin: 'Italie',
+    maker: 'Archive Claire',
+    tags: ['#soie', '#accessoire', '#intemporel'],
+    ecoScore: 72,
+    source: 'claire',
+    color: '#f7ead2',
+  },
+  {
+    id: 'sneakers-blanches',
+    name: 'Sneakers blanches',
+    category: 'chaussures',
+    material: 'cuir recycle',
+    origin: 'Portugal',
+    maker: 'Marche lente',
+    tags: ['#cuirrecycle', '#quotidien', '#marche'],
+    ecoScore: 73,
+    source: 'claire',
+    color: '#f7f7f2',
+  },
+  {
+    id: 'bottines-camel',
+    name: 'Bottines camel',
+    category: 'chaussures',
+    material: 'cuir vegetal',
+    origin: 'Espagne',
+    maker: 'Atelier vegetal',
+    tags: ['#cuirvegetal', '#automne', '#durable'],
+    ecoScore: 79,
+    source: 'claire',
+    color: '#9c673e',
+  },
+  {
+    id: 'sac-terracotta',
+    name: 'Sac terracotta',
+    category: 'sac',
+    material: 'cuir recycle',
+    origin: 'Suisse',
+    maker: 'Objet commun',
+    tags: ['#sac', '#recycle', '#memoire'],
+    ecoScore: 81,
+    source: 'claire',
+    color: '#8f1d24',
+  },
+];
+
+export const memoryPhotosSeed: MemoryPhoto[] = [
+  {
+    id: 'photo-winterthur-1',
+    silhouetteId: 'silhouette-winterthur',
+    src: photoDataUri('Winterthur, fevrier', '#c9826b', '#e2d9ce', '#d9d0c4'),
+    date: '2025-02-03',
+    place: 'Winterthur',
+    people: ['Marie'],
+  },
+  {
+    id: 'photo-geneve-1',
+    silhouetteId: 'silhouette-geneve',
+    src: photoDataUri('Geneve, avril', '#7d8975', '#cfd8d5', '#e8e0d7'),
+    date: '2025-04-15',
+    place: 'Geneve',
+    people: ['Jonas', 'Lea'],
+  },
+  {
+    id: 'photo-paris-1',
+    silhouetteId: 'silhouette-paris',
+    src: photoDataUri('Paris, juin', '#a9553f', '#f3d8c8', '#e8ded4'),
+    date: '2025-06-22',
+    place: 'Paris',
+    people: ['Akira'],
+  },
+];
+
+export const silhouettesSeed: Silhouette[] = [
+  {
+    id: 'silhouette-winterthur',
+    name: 'Jean brut + Pull gris - Winterthur fevrier 2025',
+    subtitle: 'Une base calme pour rendez-vous long',
+    baseItemIds: ['jean-brut', 'pull-merinos-gris', 'sneakers-blanches'],
+    accessoryItemIds: ['sac-terracotta'],
+    place: 'Winterthur',
+    firstDate: '2025-02-03',
+    season: 'hiver',
+    people: ['Marie'],
+    usageCount: 6,
+    appointmentReason: 'Visite atelier',
+    comment: 'Confortable, precis, tres facile a rejouer.',
+    reminderEnabled: true,
+    memoryPhotoIds: ['photo-winterthur-1'],
+  },
+  {
+    id: 'silhouette-geneve',
+    name: 'Pantalon lin + Chemise blanche - Geneve avril 2025',
+    subtitle: 'Lumieres douces, rendez-vous institutionnel',
+    baseItemIds: ['pantalon-lin-beige', 'chemise-lin-blanche', 'sneakers-blanches'],
+    accessoryItemIds: ['foulard-soie-ivoire'],
+    place: 'Geneve',
+    firstDate: '2025-04-15',
+    season: 'printemps',
+    people: ['Jonas', 'Lea'],
+    usageCount: 4,
+    appointmentReason: 'Rencontre fondation',
+    comment: 'Respire bien, bonne tenue sur toute la journee.',
+    reminderEnabled: false,
+    memoryPhotoIds: ['photo-geneve-1'],
+  },
+  {
+    id: 'silhouette-paris',
+    name: 'Robe terracotta + Foulard soie - Paris juin 2025',
+    subtitle: 'Memoire vive mais sobre',
+    baseItemIds: ['robe-midi-terracotta', 'sneakers-blanches'],
+    accessoryItemIds: ['foulard-soie-ivoire'],
+    place: 'Paris',
+    firstDate: '2025-06-22',
+    season: 'ete',
+    people: ['Akira'],
+    usageCount: 3,
+    appointmentReason: 'Dejeuner projet',
+    comment: 'La couleur aide a reconnaitre cette journee.',
+    reminderEnabled: true,
+    memoryPhotoIds: ['photo-paris-1'],
+  },
+  {
+    id: 'silhouette-lyon',
+    name: 'Jean brut + Blazer camel - Lyon octobre 2025',
+    subtitle: 'Le premix fiable',
+    baseItemIds: ['jean-brut', 'blazer-camel', 'bottines-camel'],
+    accessoryItemIds: ['sac-terracotta'],
+    place: 'Lyon',
+    firstDate: '2025-10-08',
+    season: 'automne',
+    people: ['Pierre', 'Marie'],
+    usageCount: 8,
+    appointmentReason: 'Vernissage',
+    comment: 'Le plus porte, peut etre trop automatique.',
+    reminderEnabled: true,
+    memoryPhotoIds: [],
+  },
+];
+
+export const packingPlansSeed: PackingPlan[] = [
+  {
+    id: 'packing-barcelone',
+    destination: 'Barcelone',
+    startDate: '2025-07-04',
+    endDate: '2025-07-07',
+    weather: 'Doux et lumineux',
+    silhouetteIds: ['silhouette-paris', 'silhouette-geneve'],
+    checklist: ['Robe midi terracotta', 'Pantalon lin beige', 'Chemise blanche en lin', 'Foulard soie ivoire', 'Sneakers blanches'],
+  },
+];
+
+export const seedState: StyleMemoryState = {
+  wardrobe: wardrobeSeed,
+  silhouettes: silhouettesSeed,
+  memoryPhotos: memoryPhotosSeed,
+  appointments: [],
+  packingPlans: packingPlansSeed,
+};
