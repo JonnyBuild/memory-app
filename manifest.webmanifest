@@ -1,0 +1,16 @@
+{
+  "name": "Style*Memory",
+  "short_name": "StyleMemory",
+  "description": "Prototype mobile de memoire vestimentaire responsable.",
+  "start_url": "/memory-app/",
+  "display": "standalone",
+  "background_color": "#f8f4ee",
+  "theme_color": "#8f3d2e",
+  "icons": [
+    {
+      "src": "/memory-app/pwa-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
