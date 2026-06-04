@@ -1,31 +1,6 @@
 import type { MemoryPhoto, PackingPlan, Silhouette, StyleMemoryState, WardrobeItem } from '../types';
 
-const photoDataUri = (title: string, accent: string, sky: string, ground: string) => {
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200">
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="${sky}"/>
-          <stop offset="0.55" stop-color="#f8f4ee"/>
-          <stop offset="1" stop-color="${accent}"/>
-        </linearGradient>
-        <filter id="soft"><feGaussianBlur stdDeviation="10"/></filter>
-      </defs>
-      <rect width="900" height="1200" fill="url(#sky)"/>
-      <rect y="780" width="900" height="420" fill="${ground}"/>
-      <circle cx="145" cy="170" r="82" fill="${accent}" opacity="0.32" filter="url(#soft)"/>
-      <rect x="120" y="330" width="660" height="16" rx="8" fill="#ffffff" opacity="0.35"/>
-      <rect x="180" y="408" width="540" height="16" rx="8" fill="#ffffff" opacity="0.24"/>
-      <path d="M390 452c35-30 87-30 121 0l35 315-55 2-22-190-20 190-58-1 26-192-38 69-46-24 57-169Z" fill="#262323"/>
-      <path d="M363 500l-74 246 56 12 58-168Z" fill="#f2e7d7"/>
-      <path d="M511 498l76 252-58 13-56-174Z" fill="#f2e7d7"/>
-      <path d="M346 797c57 30 145 33 213 5" stroke="#ffffff" stroke-width="18" opacity="0.45" fill="none" stroke-linecap="round"/>
-      <text x="64" y="1106" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#262323" opacity="0.72">${title}</text>
-    </svg>
-  `;
-
-  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-};
+const atelierAsset = (file: string) => `assets/atelier/${file}`;
 
 export const peopleSeed = ['Marie', 'Jonas', 'Lea', 'Pierre', 'Akira'];
 export const placesSeed = ['Winterthur', 'Geneve', 'Paris', 'Lyon', 'Barcelone'];
@@ -157,7 +132,7 @@ export const memoryPhotosSeed: MemoryPhoto[] = [
   {
     id: 'photo-winterthur-1',
     silhouetteId: 'silhouette-winterthur',
-    src: photoDataUri('Winterthur, fevrier', '#c9826b', '#e2d9ce', '#d9d0c4'),
+    src: atelierAsset('memory-photo.jpg'),
     date: '2025-02-03',
     place: 'Winterthur',
     people: ['Marie'],
@@ -165,7 +140,7 @@ export const memoryPhotosSeed: MemoryPhoto[] = [
   {
     id: 'photo-geneve-1',
     silhouetteId: 'silhouette-geneve',
-    src: photoDataUri('Geneve, avril', '#7d8975', '#cfd8d5', '#e8e0d7'),
+    src: atelierAsset('atelier-hero.jpg'),
     date: '2025-04-15',
     place: 'Geneve',
     people: ['Jonas', 'Lea'],
@@ -173,7 +148,7 @@ export const memoryPhotosSeed: MemoryPhoto[] = [
   {
     id: 'photo-paris-1',
     silhouetteId: 'silhouette-paris',
-    src: photoDataUri('Paris, juin', '#a9553f', '#f3d8c8', '#e8ded4'),
+    src: atelierAsset('wardrobe-flatlay.jpg'),
     date: '2025-06-22',
     place: 'Paris',
     people: ['Akira'],

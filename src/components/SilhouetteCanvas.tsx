@@ -9,7 +9,7 @@ interface SilhouetteCanvasProps {
   compact?: boolean;
 }
 
-const itemClass = 'absolute transition-transform duration-200 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta';
+const itemClass = 'absolute transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.025] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta';
 
 export const SilhouetteCanvas = ({
   baseItems,
@@ -44,18 +44,18 @@ export const SilhouetteCanvas = ({
         className={`${itemClass} ${className}`}
         onClick={() => onItemClick(item)}
       >
-        <ClothingGraphic item={item} className="h-full w-full drop-shadow-[0_16px_18px_rgba(38,35,35,0.16)]" />
+        <ClothingGraphic item={item} className="h-full w-full drop-shadow-[0_18px_20px_rgba(38,35,35,0.18)]" />
       </button>
     );
   };
 
   return (
     <div
-      className={`relative mx-auto overflow-hidden rounded-[2rem] bg-gradient-to-b from-chalk to-pearl ${
+      className={`relative mx-auto overflow-hidden rounded-2xl bg-[radial-gradient(circle_at_50%_45%,#fffdf9_0%,#fffdf9_44%,#f8f4ee_100%)] ${
         compact ? 'h-56 w-full max-w-64' : 'h-[26rem] w-full max-w-sm'
       }`}
     >
-      <div className="absolute left-1/2 top-12 h-[68%] w-px -translate-x-1/2 border-l border-dashed border-stone/30" />
+      <div className="absolute left-1/2 top-12 h-[68%] w-px -translate-x-1/2 border-l border-dashed border-stone/20" />
       {robe
         ? renderItem(robe, compact ? 'left-[28%] top-[10%] h-[68%] w-[44%]' : 'left-[28%] top-[9%] h-[70%] w-[44%]')
         : (

@@ -15,10 +15,13 @@ export default {
         ink: '#191716',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Cormorant Garamond', 'Georgia', 'serif'],
       },
       boxShadow: {
-        soft: '0 20px 60px rgba(38, 35, 35, 0.10)',
+        soft: '0 18px 46px rgba(38, 35, 35, 0.10)',
+        object: '0 18px 30px rgba(38, 35, 35, 0.18)',
+        fine: '0 8px 18px rgba(38, 35, 35, 0.07)',
       },
     },
   },

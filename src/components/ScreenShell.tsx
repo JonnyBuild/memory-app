@@ -12,28 +12,34 @@ interface ScreenShellProps {
 export const ScreenShell = ({ title, children, onBack, onHome, onReset }: ScreenShellProps) => (
   <main className="min-h-dvh bg-pearl text-graphite">
     <div className="mx-auto flex min-h-dvh w-full max-w-3xl flex-col bg-chalk">
-      <header className="sticky top-0 z-30 border-b border-mist/70 bg-chalk/92 px-4 py-3 backdrop-blur-xl">
+      <header className="sticky top-0 z-30 border-b border-mist/60 bg-chalk/95 px-4 pb-4 pt-3 backdrop-blur-xl">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             {onBack && (
               <button
                 type="button"
-                className="grid h-10 w-10 place-items-center rounded-full border border-mist text-graphite"
+                className="grid h-10 w-10 place-items-center rounded-full border border-mist/80 bg-chalk text-graphite transition hover:border-terracotta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
                 onClick={onBack}
                 aria-label="Retour"
               >
                 <ArrowLeft size={18} />
               </button>
             )}
-            <button type="button" className="text-left text-xl font-black tracking-normal" onClick={onHome}>
-              Style<span className="text-terracotta">*</span>Memory
-            </button>
+            {onHome ? (
+              <button type="button" className="text-left text-[1.05rem] font-bold tracking-tight" onClick={onHome}>
+                Style<span className="text-terracotta">*</span>Memory
+              </button>
+            ) : (
+              <p className="text-left text-[1.05rem] font-bold tracking-tight">
+                Style<span className="text-terracotta">*</span>Memory
+              </p>
+            )}
           </div>
           <div className="flex items-center gap-2">
             {onReset && (
               <button
                 type="button"
-                className="grid h-10 w-10 place-items-center rounded-full border border-mist text-stone"
+                className="grid h-10 w-10 place-items-center rounded-full border border-mist/80 bg-chalk text-stone transition hover:border-terracotta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
                 onClick={onReset}
                 aria-label="Reinitialiser la demo"
               >
@@ -43,7 +49,7 @@ export const ScreenShell = ({ title, children, onBack, onHome, onReset }: Screen
             {onHome && (
               <button
                 type="button"
-                className="grid h-10 w-10 place-items-center rounded-full bg-graphite text-chalk"
+                className="grid h-10 w-10 place-items-center rounded-full bg-graphite text-chalk shadow-fine transition hover:bg-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
                 onClick={onHome}
                 aria-label="Menu"
               >
@@ -52,7 +58,7 @@ export const ScreenShell = ({ title, children, onBack, onHome, onReset }: Screen
             )}
           </div>
         </div>
-        {title && <h1 className="mt-4 text-2xl font-black leading-tight text-graphite">{title}</h1>}
+        {title && <h1 className="mt-5 font-display text-[2.35rem] font-semibold leading-[0.95] text-graphite">{title}</h1>}
       </header>
       <div className="flex-1 px-4 pb-8 pt-5">{children}</div>
     </div>
