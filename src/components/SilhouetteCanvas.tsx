@@ -7,6 +7,7 @@ interface SilhouetteCanvasProps {
   showAccessories?: boolean;
   onItemClick?: (item: WardrobeItem) => void;
   compact?: boolean;
+  builder?: boolean;
 }
 
 const itemClass = 'absolute transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.025] focus-visible:outline focus-visible:outline-2 focus-visible:outline-terracotta';
@@ -17,6 +18,7 @@ export const SilhouetteCanvas = ({
   showAccessories = true,
   onItemClick,
   compact = false,
+  builder = false,
 }: SilhouetteCanvasProps) => {
   const items = [...baseItems, ...(showAccessories ? accessoryItems : [])];
   const robe = items.find((item) => item.category === 'robe');
@@ -52,7 +54,7 @@ export const SilhouetteCanvas = ({
   return (
     <div
       className={`relative mx-auto overflow-hidden rounded-2xl bg-[radial-gradient(circle_at_50%_45%,#fffdf9_0%,#fffdf9_44%,#f8f4ee_100%)] ${
-        compact ? 'h-56 w-full max-w-64' : 'h-[26rem] w-full max-w-sm'
+        compact ? 'h-56 w-full max-w-64' : builder ? 'h-[21rem] w-full max-w-xs [@media(max-height:700px)]:h-[17.5rem]' : 'h-[26rem] w-full max-w-sm'
       }`}
     >
       <div className="absolute left-1/2 top-12 h-[68%] w-px -translate-x-1/2 border-l border-dashed border-stone/20" />

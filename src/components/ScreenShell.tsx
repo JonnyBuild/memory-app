@@ -12,7 +12,7 @@ interface ScreenShellProps {
 export const ScreenShell = ({ title, children, onBack, onHome, onReset }: ScreenShellProps) => (
   <main className="min-h-dvh bg-pearl text-graphite">
     <div className="mx-auto flex min-h-dvh w-full max-w-3xl flex-col bg-chalk">
-      <header className="sticky top-0 z-30 border-b border-mist/60 bg-chalk/95 px-4 pb-4 pt-3 backdrop-blur-xl">
+      <header className="sticky top-0 z-30 border-b border-mist/60 bg-chalk/95 px-4 pb-3 pt-3 backdrop-blur-xl [@media(max-height:700px)]:pb-2">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             {onBack && (
@@ -58,9 +58,9 @@ export const ScreenShell = ({ title, children, onBack, onHome, onReset }: Screen
             )}
           </div>
         </div>
-        {title && <h1 className="mt-5 font-display text-[2.35rem] font-semibold leading-[0.95] text-graphite">{title}</h1>}
+        {title && <h1 className="mt-3 font-display text-[2rem] font-semibold leading-[0.95] text-graphite [@media(max-height:700px)]:mt-2 [@media(max-height:700px)]:text-[1.78rem] sm:text-[2.35rem]">{title}</h1>}
       </header>
-      <div className="flex-1 px-4 pb-8 pt-5">{children}</div>
+      <div className="flex-1 px-4 pb-6 pt-4 [@media(max-height:700px)]:pb-4 [@media(max-height:700px)]:pt-3">{children}</div>
     </div>
   </main>
 );

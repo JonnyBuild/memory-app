@@ -2,6 +2,7 @@ import {
   CalendarDays,
   Camera,
   Check,
+  ChevronDown,
   ChevronRight,
   CircleDot,
   CloudSun,
@@ -82,6 +83,9 @@ const secondaryButton =
   'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-mist/90 bg-chalk px-4 py-2 text-sm font-semibold text-graphite transition hover:border-terracotta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta';
 const chipButton =
   'rounded-full border px-3 py-2 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta';
+const imageScrim = 'absolute inset-0 bg-[linear-gradient(180deg,rgba(25,23,22,0.1)_0%,rgba(25,23,22,0.22)_38%,rgba(25,23,22,0.86)_100%)]';
+const imageScrimLeft = 'absolute inset-0 bg-[linear-gradient(90deg,rgba(25,23,22,0.9)_0%,rgba(25,23,22,0.58)_45%,rgba(25,23,22,0.14)_100%)]';
+const imageCaption = 'z-10 text-chalk drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]';
 
 export default function App() {
   const {
@@ -196,13 +200,13 @@ const OnboardingScreen = ({ onStart }: { onStart: () => void }) => {
   return (
     <main className="min-h-dvh bg-pearl text-graphite">
       <div className="mx-auto flex min-h-dvh w-full max-w-3xl flex-col bg-chalk">
-        <section className="relative flex min-h-[62dvh] overflow-hidden px-5 pb-6 pt-6">
+        <section className="relative flex min-h-[50dvh] overflow-hidden px-5 pb-5 pt-5">
           <img
             src={atelierAsset('atelier-hero.jpg')}
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-chalk/96 via-chalk/38 to-chalk" />
+          <div className="absolute inset-0 bg-gradient-to-b from-chalk/98 via-chalk/52 to-chalk" />
           <div className="relative z-10 flex w-full flex-col">
             <div className="flex items-center justify-between">
               <p className="text-[1.08rem] font-bold tracking-tight">Style<span className="text-terracotta">*</span>Memory</p>
@@ -215,9 +219,9 @@ const OnboardingScreen = ({ onStart }: { onStart: () => void }) => {
                 <Info size={17} />
               </button>
             </div>
-            <div className="mt-28 max-w-[21rem]">
+            <div className="mt-20 max-w-[21rem]">
               <p className="fine-label text-terracotta">Archive de vestiaire</p>
-              <h1 className="mt-3 font-display text-[4.05rem] font-semibold leading-[0.82] tracking-normal">
+              <h1 className="mt-3 font-display text-[3.55rem] font-semibold leading-[0.84] tracking-normal">
                 Style
                 <span className="text-terracotta">*</span>
                 <br />
@@ -226,27 +230,27 @@ const OnboardingScreen = ({ onStart }: { onStart: () => void }) => {
             </div>
           </div>
         </section>
-        <section className="flex flex-1 flex-col justify-between px-5 pb-8 pt-3">
+        <section className="flex flex-1 flex-col justify-between px-5 pb-5 pt-3">
           <div className="space-y-5">
-            <p className="max-w-xl text-[1.08rem] leading-8 text-graphite/82">
+            <p className="max-w-xl text-[1rem] leading-7 text-graphite/82">
               Une app mobile pour composer moins, mieux porter, et garder la memoire de chaque silhouette.
             </p>
-            <div className="grid grid-cols-3 border-y border-mist/70 py-4 text-center">
+            <div className="grid grid-cols-3 border-y border-mist/70 py-3 text-center">
               <div>
-                <p className="font-display text-3xl font-semibold">4</p>
+                <p className="font-display text-[1.7rem] font-semibold leading-none">4</p>
                 <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">Silhouettes</p>
               </div>
               <div className="border-x border-mist/70">
-                <p className="font-display text-3xl font-semibold">3</p>
+                <p className="font-display text-[1.7rem] font-semibold leading-none">3</p>
                 <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">Photos</p>
               </div>
               <div>
-                <p className="font-display text-3xl font-semibold">1</p>
+                <p className="font-display text-[1.7rem] font-semibold leading-none">1</p>
                 <p className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">Valise</p>
               </div>
             </div>
           </div>
-          <div className="mt-8 flex flex-col gap-3">
+          <div className="mt-5 flex flex-col gap-2.5">
             <button type="button" className={primaryButton} onClick={onStart}>
               Commencer <ChevronRight size={18} />
             </button>
@@ -272,34 +276,34 @@ const OnboardingScreen = ({ onStart }: { onStart: () => void }) => {
 };
 
 const MenuScreen = ({ onNavigate }: { onNavigate: (screen: Screen) => void }) => (
-  <section className="flex min-h-[calc(100dvh-8rem)] flex-col justify-between">
-    <div className="space-y-7">
+  <section className="flex min-h-[calc(100dvh-7rem)] flex-col justify-between [@media(max-height:700px)]:min-h-0">
+    <div className="space-y-5 [@media(max-height:700px)]:space-y-3">
       <div>
         <p className="fine-label text-terracotta">Prototype Claire Germain</p>
-        <h1 className="mt-3 font-display text-[3.45rem] font-semibold leading-[0.92]">Memoire calme du vestiaire.</h1>
+        <h1 className="mt-2 font-display text-[2.85rem] font-semibold leading-[0.92] [@media(max-height:700px)]:text-[2.24rem]">Memoire calme du vestiaire.</h1>
       </div>
-      <div className="space-y-3.5">
+      <div className="space-y-2.5 [@media(max-height:700px)]:space-y-1.5">
         {menuItems.map(({ screen, label, note, image }) => (
           <button
             key={screen}
             type="button"
-            className="group grid w-full grid-cols-[5.75rem_1fr_auto] items-center gap-4 border-b border-mist/70 pb-3 text-left transition hover:border-terracotta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-terracotta"
+            className="group grid w-full grid-cols-[4.75rem_1fr_auto] items-center gap-3 border-b border-mist/70 pb-2.5 text-left transition hover:border-terracotta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-terracotta [@media(max-height:700px)]:grid-cols-[4rem_1fr_auto] [@media(max-height:700px)]:pb-1.5"
             onClick={() => onNavigate(screen)}
           >
-            <span className="block h-20 overflow-hidden rounded-2xl bg-pearl shadow-fine">
+            <span className="block h-16 overflow-hidden rounded-2xl bg-pearl shadow-fine [@media(max-height:700px)]:h-12">
               <img src={image} alt="" className="h-full w-full object-cover transition duration-300 group-hover:scale-105" />
             </span>
             <span className="min-w-0">
               <span className="block text-[1.05rem] font-semibold">{label}</span>
-              <span className="mt-1 block text-sm text-stone">{note}</span>
+              <span className="mt-0.5 block text-[0.82rem] text-stone">{note}</span>
             </span>
             <ChevronRight size={19} className="text-stone transition group-hover:translate-x-0.5 group-hover:text-terracotta" />
           </button>
         ))}
       </div>
     </div>
-    <div className="mt-10 border-t border-mist/70 pt-5">
-      <p className="font-display text-4xl font-semibold leading-none">4</p>
+    <div className="mt-6 border-t border-mist/70 pt-3 [@media(max-height:700px)]:hidden">
+      <p className="font-display text-3xl font-semibold leading-none">4</p>
       <p className="mt-1 text-sm text-stone">silhouettes pre-creees pour la demo</p>
     </div>
   </section>
@@ -400,7 +404,7 @@ const SelectPill = ({
   <label className="relative">
     <span className="sr-only">{label}</span>
     <select
-      className="h-11 w-full rounded-full border border-mist/90 bg-chalk px-3 text-sm font-semibold text-graphite outline-none transition focus:border-terracotta focus:ring-4 focus:ring-terracotta/10"
+      className="h-11 w-full appearance-none rounded-full border border-mist/90 bg-chalk px-3 pr-9 text-sm font-semibold text-graphite outline-none transition focus:border-terracotta focus:ring-4 focus:ring-terracotta/10"
       value={value}
       onChange={(event) => onChange(event.target.value)}
     >
@@ -411,7 +415,51 @@ const SelectPill = ({
         </option>
       ))}
     </select>
+    <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-stone" size={16} />
   </label>
+);
+
+const SelectControl = ({
+  value,
+  options,
+  onChange,
+  placeholder,
+  className,
+}: {
+  value: string;
+  options: Array<string | { value: string; label: string }>;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  className?: string;
+}) => (
+  <label className={cx('relative block', className)}>
+    <span className="sr-only">{placeholder ?? 'Selection'}</span>
+    <select
+      className="form-input appearance-none pr-11"
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+    >
+      {placeholder && <option value="">{placeholder}</option>}
+      {options.map((option) => (
+        <option key={typeof option === 'string' ? option : option.value} value={typeof option === 'string' ? option : option.value}>
+          {typeof option === 'string' ? option : option.label}
+        </option>
+      ))}
+    </select>
+    <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-stone" size={17} />
+  </label>
+);
+
+const CheckMark = ({ checked }: { checked: boolean }) => (
+  <span
+    className={cx(
+      'grid h-6 w-6 shrink-0 place-items-center rounded-full border transition',
+      checked ? 'border-terracotta bg-terracotta text-chalk shadow-fine' : 'border-mist bg-chalk text-transparent',
+    )}
+    aria-hidden="true"
+  >
+    <Check size={15} strokeWidth={3} />
+  </span>
 );
 
 const DetailScreen = ({
@@ -480,8 +528,8 @@ const DetailScreen = ({
         ) : (
           <div className="relative mx-auto h-[27rem] w-full max-w-sm overflow-hidden rounded-2xl bg-pearl text-chalk shadow-soft">
             <img src={atelierAsset('memory-photo.jpg')} alt="" className="h-full w-full object-cover opacity-90" />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/76 via-ink/10 to-transparent" />
-            <div className="absolute inset-x-5 bottom-5">
+            <div className={imageScrim} />
+            <div className={cx(imageCaption, 'absolute inset-x-5 bottom-5')}>
               <Camera className="text-chalk" size={28} />
               <p className="mt-3 font-display text-3xl font-semibold">Aucune photo memoire</p>
               <p className="mt-2 text-sm leading-6 text-chalk/76">Ajoute une image pour transformer cette silhouette en souvenir.</p>
@@ -594,7 +642,7 @@ const DetailPanelView = ({
       <section className="overflow-hidden rounded-2xl bg-graphite text-chalk">
         <div className="relative h-44">
           <img src={atelierAsset('calendar-still.jpg')} alt="" className="h-full w-full object-cover opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/88 via-ink/26 to-transparent" />
+          <div className={imageScrim} />
           <MapPin className="absolute bottom-5 left-5 fill-terracotta text-terracotta" size={30} />
         </div>
         <p className="px-5 py-4 text-sm font-semibold">{silhouette.place}</p>
@@ -708,16 +756,16 @@ const CreateSilhouetteScreen = ({
       </div>
 
       {step === 1 && (
-        <section className="space-y-4">
+        <section className="space-y-3">
           <div className="relative">
-            <SilhouetteCanvas baseItems={selectedBase} accessoryItems={selectedAccessories} showAccessories />
+            <SilhouetteCanvas baseItems={selectedBase} accessoryItems={selectedAccessories} showAccessories builder />
             <div className="absolute right-4 top-10 flex flex-col items-start gap-0.5">
               {(['haut', 'bas', 'accessoire'] as const).map((category) => (
                 <button
                   key={category}
                   type="button"
                   className={cx(
-                    'font-display text-[2.35rem] font-semibold leading-[0.9] transition',
+                    'font-display text-[2rem] font-semibold leading-[0.9] transition',
                     activeCreateCategory === category ? 'text-graphite' : 'text-stone/35',
                   )}
                   onClick={() => setActiveCreateCategory(category)}
@@ -740,7 +788,7 @@ const CreateSilhouetteScreen = ({
                     key={item.id}
                     type="button"
                     className={cx(
-                      'w-[6.35rem] rounded-2xl border bg-chalk p-2 text-left shadow-fine transition',
+                      'w-[5.85rem] rounded-2xl border bg-chalk p-2 text-left shadow-fine transition',
                       active ? 'border-terracotta ring-4 ring-terracotta/10' : 'border-mist/80',
                     )}
                     onClick={() => {
@@ -749,7 +797,7 @@ const CreateSilhouetteScreen = ({
                     }}
                     aria-label={`Choisir ${item.name}`}
                   >
-                    <ClothingGraphic item={item} className="h-20 w-full" />
+                    <ClothingGraphic item={item} className="h-16 w-full [@media(max-height:700px)]:h-14" />
                     <span className="mt-1 block truncate text-xs font-semibold">{item.name}</span>
                   </button>
                 );
@@ -757,7 +805,7 @@ const CreateSilhouetteScreen = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-2 [@media(max-height:700px)]:hidden">
             {(['haut', 'bas', 'accessoire'] as const).map((category) => (
               <button
                 key={category}
@@ -769,7 +817,7 @@ const CreateSilhouetteScreen = ({
               </button>
             ))}
           </div>
-          <div className="sticky bottom-0 z-20 -mx-4 grid grid-cols-[0.85fr_1.15fr] gap-2 border-t border-mist/70 bg-chalk/95 px-4 py-3 backdrop-blur">
+          <div className="sticky bottom-0 z-20 -mx-4 grid grid-cols-[0.85fr_1.15fr] gap-2 border-t border-mist/70 bg-chalk/95 px-4 py-2.5 backdrop-blur">
             <button type="button" className={secondaryButton} onClick={() => setStep(2)}>
               Mes pieces
             </button>
@@ -820,13 +868,12 @@ const CreateSilhouetteScreen = ({
                 value={newItemName}
                 onChange={(event) => setNewItemName(event.target.value)}
               />
-              <select
-                className="min-h-11 rounded-2xl border border-mist bg-chalk px-3 text-sm font-semibold outline-none"
+              <SelectControl
                 value={newItemCategory}
-                onChange={(event) => setNewItemCategory(event.target.value as WardrobeCategory)}
-              >
-                {selectableCategories.map((category) => <option key={category} value={category}>{categoryLabels[category]}</option>)}
-              </select>
+                onChange={(value) => setNewItemCategory(value as WardrobeCategory)}
+                options={selectableCategories.map((category) => ({ value: category, label: categoryLabels[category] }))}
+                className="w-36"
+              />
             </div>
             <button
               type="button"
@@ -862,9 +909,7 @@ const CreateSilhouetteScreen = ({
             <SilhouetteCanvas baseItems={selectedBase} accessoryItems={selectedAccessories} showAccessories compact />
           </div>
           <FormField label="Lieu">
-            <select className="form-input" value={place} onChange={(event) => setPlace(event.target.value)}>
-              {placesSeed.map((item) => <option key={item} value={item}>{item}</option>)}
-            </select>
+            <SelectControl value={place} onChange={setPlace} options={placesSeed} />
           </FormField>
           <FormField label="Date">
             <input className="form-input" type="date" value={date} onChange={(event) => setDate(event.target.value)} />
@@ -889,10 +934,16 @@ const CreateSilhouetteScreen = ({
           <FormField label="Commentaire">
             <textarea className="form-input min-h-24 py-3" value={comment} onChange={(event) => setComment(event.target.value)} />
           </FormField>
-          <label className="flex items-center justify-between rounded-2xl border border-mist/70 bg-pearl/35 p-4 font-semibold">
-            Rappel fictif veille + sur place
-            <input type="checkbox" checked={reminderEnabled} onChange={(event) => setReminderEnabled(event.target.checked)} />
-          </label>
+          <button
+            type="button"
+            role="checkbox"
+            aria-checked={reminderEnabled}
+            className="flex w-full items-center justify-between gap-4 rounded-2xl border border-mist/70 bg-pearl/35 p-4 text-left font-semibold transition hover:border-terracotta focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
+            onClick={() => setReminderEnabled((current) => !current)}
+          >
+            <span>Rappel fictif veille + sur place</span>
+            <CheckMark checked={reminderEnabled} />
+          </button>
           <button type="button" className={cx(primaryButton, 'sticky bottom-0 z-20 -mx-4 w-[calc(100%+2rem)] rounded-none py-4')} onClick={save}>
             <Check size={18} /> Valider
           </button>
@@ -933,15 +984,15 @@ const AppointmentScreen = ({
         <datalist id="people">{peopleSeed.map((item) => <option key={item} value={item} />)}</datalist>
       </FormField>
 
-      <section className="relative min-h-72 overflow-hidden rounded-2xl bg-ink p-5 text-chalk shadow-soft">
+      <section className="relative min-h-64 overflow-hidden rounded-2xl bg-ink p-5 text-chalk shadow-soft">
         <img src={atelierAsset('memory-photo.jpg')} alt="" className="absolute inset-0 h-full w-full object-cover opacity-55" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/44 to-ink/8" />
+        <div className={imageScrimLeft} />
         <div className="absolute inset-0 flex animate-memory gap-4 opacity-60">
           {[...photos, ...photos, ...photos].map((photo, index) => (
-            <img key={`${photo.id}-${index}`} src={photo.src} alt="" className="h-72 w-44 rounded-2xl object-cover opacity-45 blur-[1px]" />
+            <img key={`${photo.id}-${index}`} src={photo.src} alt="" className="h-64 w-40 rounded-2xl object-cover opacity-45 blur-[1px]" />
           ))}
         </div>
-        <div className="relative z-10 max-w-xs">
+        <div className={cx('relative', imageCaption, 'max-w-xs')}>
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-chalk/64">Memoire</p>
           <h2 className="mt-3 font-display text-5xl font-semibold leading-[0.9]">{person || 'Personne'}</h2>
           <p className="mt-3 text-sm leading-6 text-chalk/72">{history.length} silhouettes deja portees ensemble.</p>
@@ -974,9 +1025,7 @@ const AppointmentScreen = ({
       <section className="rounded-2xl border border-mist/70 bg-pearl/35 p-4">
         <h2 className="font-display text-3xl font-semibold">Nouveau rendez-vous</h2>
         <div className="mt-4 grid gap-3">
-          <select className="form-input" value={place} onChange={(event) => setPlace(event.target.value)}>
-            {placesSeed.map((item) => <option key={item} value={item}>{item}</option>)}
-          </select>
+          <SelectControl value={place} onChange={setPlace} options={placesSeed} />
           <input className="form-input" type="date" value={date} onChange={(event) => setDate(event.target.value)} />
           <button
             type="button"
@@ -1001,30 +1050,30 @@ const CalendarScreen = ({ state, onOpenDetail }: AppStateProp & { onOpenDetail: 
   const silhouetteByDay = new Map(visibleSilhouettes.map((silhouette) => [new Date(silhouette.firstDate).getDate(), silhouette]));
 
   return (
-    <section className="space-y-6">
-      <div className="relative h-36 overflow-hidden rounded-2xl bg-pearl shadow-fine">
+    <section className="space-y-4 [@media(max-height:700px)]:space-y-3">
+      <div className="relative h-28 overflow-hidden rounded-2xl bg-pearl shadow-fine [@media(max-height:700px)]:h-20">
         <img src={atelierAsset('calendar-still.jpg')} alt="" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-chalk/92 via-chalk/52 to-transparent" />
         <div className="absolute bottom-4 left-4">
           <p className="fine-label text-terracotta">Agenda d'usage</p>
-          <p className="mt-1 font-display text-3xl font-semibold">Juin 2025</p>
+          <p className="mt-1 font-display text-3xl font-semibold [@media(max-height:700px)]:text-2xl">Juin 2025</p>
         </div>
       </div>
 
       <div className="flex rounded-full border border-mist/80 bg-pearl/45 p-1">
-        <button type="button" className={cx('h-11 flex-1 rounded-full font-semibold', mode === 'month' ? 'bg-chalk shadow-fine' : 'text-stone')} onClick={() => setMode('month')}>Mois</button>
-        <button type="button" className={cx('h-11 flex-1 rounded-full font-semibold', mode === 'timeline' ? 'bg-chalk shadow-fine' : 'text-stone')} onClick={() => setMode('timeline')}>Frise</button>
+        <button type="button" className={cx('h-10 flex-1 rounded-full font-semibold [@media(max-height:700px)]:h-9', mode === 'month' ? 'bg-chalk shadow-fine' : 'text-stone')} onClick={() => setMode('month')}>Mois</button>
+        <button type="button" className={cx('h-10 flex-1 rounded-full font-semibold [@media(max-height:700px)]:h-9', mode === 'timeline' ? 'bg-chalk shadow-fine' : 'text-stone')} onClick={() => setMode('timeline')}>Frise</button>
       </div>
       {mode === 'month' ? (
         <div className="grid grid-cols-7 gap-1">
-          {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((item, index) => <span key={`${item}-${index}`} className="py-2 text-center text-xs font-semibold text-stone">{item}</span>)}
+          {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((item, index) => <span key={`${item}-${index}`} className="py-1 text-center text-xs font-semibold text-stone">{item}</span>)}
           {days.map((day) => {
             const silhouette = silhouetteByDay.get(day);
             return (
               <button
                 key={day}
                 type="button"
-                className={cx('min-h-20 rounded-2xl border p-1.5 text-left transition', silhouette ? 'border-terracotta bg-chalk shadow-fine' : 'border-mist/70 bg-pearl/28')}
+                className={cx('min-h-14 rounded-xl border p-1.5 text-left transition [@media(max-height:700px)]:min-h-11', silhouette ? 'border-terracotta bg-chalk shadow-fine' : 'border-mist/70 bg-pearl/28')}
                 onClick={() => silhouette && onOpenDetail(silhouette.id)}
               >
                 <span className="text-xs font-semibold">{day}</span>
@@ -1056,7 +1105,7 @@ const CalendarScreen = ({ state, onOpenDetail }: AppStateProp & { onOpenDetail: 
 const CalendarThumbnail = ({ items }: { items: WardrobeItem[] }) => (
   <div className="mt-1 grid grid-cols-2 gap-1">
     {items.slice(0, 4).map((item) => (
-      <span key={item.id} className="h-5 rounded-lg border border-graphite/10 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.28)]" style={{ backgroundColor: item.color }} />
+      <span key={item.id} className="h-5 rounded-lg border border-graphite/10 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.28)] [@media(max-height:700px)]:h-3" style={{ backgroundColor: item.color }} />
     ))}
   </div>
 );
@@ -1072,10 +1121,10 @@ const ImpactScreen = ({ state }: AppStateProp) => {
 
   return (
     <section className="space-y-6">
-      <section className="relative h-56 overflow-hidden rounded-2xl bg-pearl shadow-fine">
+      <section className="relative h-52 overflow-hidden rounded-2xl bg-pearl shadow-fine">
         <img src={atelierAsset('textile-detail.jpg')} alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/72 via-ink/10 to-transparent" />
-        <div className="absolute bottom-5 left-5 right-5 text-chalk">
+        <div className={imageScrim} />
+        <div className={cx(imageCaption, 'absolute bottom-5 left-5 right-5')}>
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-chalk/70">Matiere et usage</p>
           <p className="mt-2 font-display text-5xl font-semibold leading-none">{metrics.estimatedFootprint} kg</p>
           <p className="mt-2 text-sm leading-6 text-chalk/76">Empreinte fictive estimee selon les matieres et la reutilisation.</p>
@@ -1124,10 +1173,10 @@ const PackingScreen = ({
 
   return (
     <section className="space-y-6">
-      <section className="relative h-56 overflow-hidden rounded-2xl bg-pearl shadow-fine">
+      <section className="relative h-52 overflow-hidden rounded-2xl bg-pearl shadow-fine">
         <img src={atelierAsset('packing-still.jpg')} alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/72 via-ink/10 to-transparent" />
-        <div className="absolute bottom-5 left-5 right-5 text-chalk">
+        <div className={imageScrim} />
+        <div className={cx(imageCaption, 'absolute bottom-5 left-5 right-5')}>
           <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-chalk/70">Capsule voyage</p>
           <p className="mt-2 font-display text-5xl font-semibold leading-none">{destination}</p>
         </div>
@@ -1136,9 +1185,7 @@ const PackingScreen = ({
       <section className="rounded-2xl border border-mist/70 bg-pearl/35 p-4">
         <div className="grid gap-3">
           <FormField label="Destination">
-            <select className="form-input" value={destination} onChange={(event) => setDestination(event.target.value)}>
-              {placesSeed.map((item) => <option key={item} value={item}>{item}</option>)}
-            </select>
+            <SelectControl value={destination} onChange={setDestination} options={placesSeed} />
           </FormField>
           <div className="grid grid-cols-2 gap-3">
             <FormField label="Depart">
@@ -1166,24 +1213,28 @@ const PackingScreen = ({
         {state.silhouettes.map((silhouette) => {
           const checked = selectedIds.includes(silhouette.id);
           return (
-            <label key={silhouette.id} className="flex items-center gap-3 border-b border-mist/70 pb-3">
-              <input
-                type="checkbox"
-                checked={checked}
-                onChange={(event) =>
+            <div key={silhouette.id} className="grid grid-cols-[1fr_auto] items-center gap-2 border-b border-mist/70 pb-3">
+              <button
+                type="button"
+                role="checkbox"
+                aria-checked={checked}
+                className="flex min-w-0 items-center gap-3 rounded-2xl py-1 text-left transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta"
+                onClick={() =>
                   setSelectedIds((current) =>
-                    event.target.checked ? [...current, silhouette.id] : current.filter((id) => id !== silhouette.id),
+                    checked ? current.filter((id) => id !== silhouette.id) : [...current, silhouette.id],
                   )
                 }
-              />
-              <span className="min-w-0 flex-1">
-                <span className="block font-semibold">{silhouette.name}</span>
-                <span className="text-sm text-stone">{silhouette.usageCount} utilisations</span>
-              </span>
+              >
+                <CheckMark checked={checked} />
+                <span className="min-w-0 flex-1">
+                  <span className="block line-clamp-2 font-semibold leading-tight">{silhouette.name}</span>
+                  <span className="mt-1 block text-sm text-stone">{silhouette.usageCount} utilisations</span>
+                </span>
+              </button>
               <button type="button" className="grid h-10 w-10 place-items-center rounded-full border border-mist/80 bg-chalk text-graphite" onClick={() => onOpenDetail(silhouette.id)} aria-label={`Voir ${silhouette.name}`}>
                 <ChevronRight size={18} />
               </button>
-            </label>
+            </div>
           );
         })}
       </section>
